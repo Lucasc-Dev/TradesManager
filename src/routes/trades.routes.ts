@@ -6,6 +6,7 @@ const router = Router();
 
 const tradesController = new TradesController();
 
+router.get('/', tradesController.index);
 router.post('/', tradesController.create);
 
 export default router;

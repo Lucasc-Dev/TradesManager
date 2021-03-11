@@ -11,6 +11,12 @@ export default class TradesRepository implements ITradesRepository {
     constructor() {
         this.ormRepository = getRepository(Trade);
     }
+
+    public async find(): Promise<Trade[]> {
+        const trades = await this.ormRepository.find()
+
+        return trades;
+    }
     
     public async create(data: ICreateTradeDTO): Promise<Trade> {
         const trade = this.ormRepository.create(data);
