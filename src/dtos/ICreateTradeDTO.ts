@@ -1,5 +1,10 @@
 export default interface ICreateTradeDTO {
     user_id: string;
-    items_sold: string;
-    items_received: string;
+    items: Array<{
+        item_id: number;
+        color?: string;
+        certification?: string;
+        desc: 'sold' | 'received'
+        amount: number;
+    }>;
 }
