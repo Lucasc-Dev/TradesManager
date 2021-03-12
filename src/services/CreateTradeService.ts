@@ -1,3 +1,4 @@
+import { injectable, inject } from 'tsyringe';
 import Trade from "../models/Trade";
 import ITradesRepository from "../repositories/models/ITradesRepository";
 
@@ -12,8 +13,10 @@ interface Request {
     }>;
 }
 
+@injectable()
 export default class CreateTradeService {
     constructor(
+        @inject('TradesRepository')
         private tradesRepository: ITradesRepository,
     ) {}
 

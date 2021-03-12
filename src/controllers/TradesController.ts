@@ -1,15 +1,12 @@
 import { Request, Response } from "express";
+import { container } from 'tsyringe';
 
 import CreateTradeService from '../services/CreateTradeService';
 import ListUserTradesService from '../services/ListUserTradesService';
 
-import TradesRepository from '../repositories/implementations/TradesRepository';
-
 export default class TradesController {
     public async index(request: Request, response: Response): Promise<Response> {
-        const tradesRepository = new TradesRepository();
-
-        const listUserTrades = new ListUserTradesService(tradesRepository);
+        const listUserTrades = container.resolve(ListUserTradesService);
 
         const trades = await listUserTrades.execute();
 
@@ -19,9 +16,7 @@ export default class TradesController {
     public async create(request: Request, response: Response): Promise<Response> {
         const { user_id, items } = request.body;
         
-        const tradesRepository = new TradesRepository();
-
-        const createTrade = new CreateTradeService(tradesRepository);
+        const createTrade = container.resolve(CreateTradeService);
 
         const trade = await createTrade.execute({ user_id, items });
 
