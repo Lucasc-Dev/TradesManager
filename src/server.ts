@@ -1,4 +1,5 @@
-import './database'
+import './database';
+import './container';
 
 import express from "express";
 import routes from './routes';
