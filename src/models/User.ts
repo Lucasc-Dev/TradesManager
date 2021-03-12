@@ -9,7 +9,7 @@ export default class User {
     @OneToMany(
         type => Trade, 
         trade => trade.user, 
-        { eager: true, cascade: ['insert', 'update'] }
+        { cascade: ['insert', 'update'] }
     )
     @JoinColumn({ name: 'user_id' })
     trades: Trade[];

@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 import TradeItem from './TradeItem';
 import User from "./User";
@@ -8,7 +8,14 @@ export default class Trade {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @ManyToOne(type => User, user => user.id)
+    @Column()
+    user_id: string;
+
+    @ManyToOne(
+        type => User,
+        user => user.id,
+    )
+    @JoinColumn({ name: 'user_id' })
     user: User;
 
     @OneToMany(
